@@ -10,3 +10,11 @@ About:
 
 This script runs a GUI that assists the user in the game Boggle.
 Run the script and follow the instructions to use the tool.  Enjoy!
+
+Required packages:
+
+nltk corpora: words, wordnet
+
+color
+
+tkinter
