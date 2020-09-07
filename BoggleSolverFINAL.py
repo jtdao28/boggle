@@ -236,7 +236,7 @@ def get_input_Callback():
 		messagebox.showwarning('Invalid String','Please enter a valid 16 tile string! \nExample: \"abcdefghijklnmop\"')
 	else:
 		# Boggle main grid
-		
+		letter_str = []
 		letter_iter = iter(user_input)
 		for index, letter in enumerate(letter_iter, start = 1):  # Handle "Qu" tile exception
 			if letter == 'q':
@@ -251,6 +251,7 @@ def get_input_Callback():
 
 		grid_frame = []
 		label_list = []
+
 
 		for tile in range(16):  # Populate Boggle grid
 			col = tile + 1
