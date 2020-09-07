@@ -15,7 +15,6 @@ flag = []
 Q_vec = []
 word_list = []
 check_list = []
-final_list = []
 letter_str = []
 word_count = 0
 word_index = dict()
@@ -184,6 +183,11 @@ def solve_boggle(input_str):
 	#		   The dictionary is sorted by point value from highest to lowest.
 
 	global check_list
+	global scores
+	global word_list
+	scores.clear()
+	word_list = []
+	
 	import_dict()
 	# Check for instances of "Q" in input string to account for "Qu" tile exception
 	input_str.lower()
@@ -204,12 +208,9 @@ def solve_boggle(input_str):
 		for start_tile in range(1,17):
 			loop_adjacent(start_tile,start_tile)
 			check_list = []  # This is the reason why check_list must be global
-		sorted(word_list)
 		
-		for word in word_list:  # Remove duplicates
-			if word not in final_list:
-				final_list.append(word)
-				scores[word] = score_word(word)
+		for word in word_list:
+			scores[word] = score_word(word)
 
 		# return scores
 		return sorted(scores.items(), key = lambda item: item[1], reverse = True)
@@ -252,7 +253,6 @@ def get_input_Callback():
 		grid_frame = []
 		label_list = []
 
-
 		for tile in range(16):  # Populate Boggle grid
 			col = tile + 1
 			row = 1
@@ -289,8 +289,8 @@ def get_input_Callback():
 				)
 			label_list.append(label)
 			label.pack()
-	words = solve_boggle(user_input)
 
+	words = solve_boggle(user_input)
 	side_list.delete(0,'end')
 	try:
 		for ii in words:
